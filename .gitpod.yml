@@ -1,0 +1,18 @@
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 3306
+    onOpen: ignore
+  - port: 8001
+    onOpen: open-preview
+    
+tasks:
+  - name: Apache
+    command: >
+      apachectl start;
+  - command: >
+      gp open public/index.php;
+    
+vscode:
+  extensions:
+    - bmewburn.vscode-intelephense-client
