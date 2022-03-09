@@ -9,15 +9,15 @@ ports:
 tasks:
   - name: php-login
     init: >
-      mysql -u root -Bse "CREATE DATABASE IF NOT EXISTS auth;CREATE USER IF NOT EXISTS newuser@localhost IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON auth.* TO newuser@localhost;FLUSH PRIVILEGES;"; &&
-      mysql -u root auth < ./public/database.sql;
+      mysql -u root -Bse "CREATE DATABASE IF NOT EXISTS auth;CREATE USER IF NOT EXISTS newuser@localhost IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON auth.* TO newuser@localhost;FLUSH PRIVILEGES;" &&
+      mysql -u root auth < ./public/database.sql
   - name: Apache
     command: >
-      apachectl start;
+      apachectl start
     openMode: split-right
   - name: Open-File
     command: >
-      gp open public/index.php;
+      gp open public/index.php
     openMode: split-right
 
 vscode:
