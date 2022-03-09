@@ -7,15 +7,18 @@ ports:
     onOpen: open-preview
     
 tasks:
+  - name: php-login
+    init: >
+      mysql -u root -Bse "CREATE DATABASE IF NOT EXISTS auth;CREATE USER IF NOT EXISTS newuser@localhost IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON auth.* TO newuser@localhost;FLUSH PRIVILEGES;"; &&
+      mysql -u root auth < ./public/database.sql;
   - name: Apache
     command: >
       apachectl start;
+    openMode: split-right
   - name: Open-File
     command: >
       gp open public/index.php;
-  - name: php-login
-    command: >
-      mysql -u root -Bse "CREATE DATABASE IF NOT EXISTS auth;CREATE USER IF NOT EXISTS newuser@localhost IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON auth.* TO newuser@localhost;FLUSH PRIVILEGES;";mysql -u root auth < ./public/database.sql;
+    openMode: split-right
 
 vscode:
   extensions:
