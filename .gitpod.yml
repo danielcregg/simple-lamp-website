@@ -14,11 +14,9 @@ tasks:
   - name: Apache
     command: >
       apachectl start;
-    openMode: split-right
   - name: Open-File
     command: >
       gp open public/index.php;
-    openMode: split-right
 
 vscode:
   extensions:
