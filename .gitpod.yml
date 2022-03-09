@@ -10,12 +10,30 @@ tasks:
   - name: Apache
     command: >
       apachectl start;
-  - name: Open-Browser
+  - name: Open-File
     command: >
       gp open public/index.php;
   - name: php-login
     command: >
       mysql -u root -Bse "CREATE DATABASE IF NOT EXISTS auth;CREATE USER IF NOT EXISTS newuser@localhost IDENTIFIED BY 'password';GRANT ALL PRIVILEGES ON auth.* TO newuser@localhost;FLUSH PRIVILEGES;";mysql -u root auth < ./public/database.sql;
+
 vscode:
   extensions:
     - bmewburn.vscode-intelephense-client
+
+github:
+  prebuilds:
+    # enable for the master/default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: true
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # enable for pull requests coming from forks (defaults to false)
+    pullRequestsFromForks: true
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to true)
+    addComment: true
+    # add a "Review in Gitpod" button to pull requests (defaults to false)
+    addBadge: false
+    # add a label once the prebuild is ready to pull requests (defaults to false)
+    addLabel: prebuilt-in-gitpod
